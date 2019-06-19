@@ -1,0 +1,17 @@
+h1 {
+    font-family: 'Proza Libre', sans-serif;
+    font-size: 5em;
+    margin: 0 auto;
+    padding: 20px;
+}
+main {
+    display: grid;
+    grid-template-columns: 150px 150px 150px;
+    grid-template-rows: 150px 150px 150px;
+    grid-gap: 10px;
+    background-color: black;
+    width: 470px;
+}
+div {
+    background-color: white;
+}
