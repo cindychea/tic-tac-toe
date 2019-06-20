@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const boxes = document.querySelectorAll('.box');
 
-    const grid = [
+    var grid = [
         ['', '', ''],
         ['', '', ''],
         ['', '', ''],
@@ -47,24 +47,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 const y = box.position[1];
                 if (player == p1) {
                     box.innerText = p1.marker;
-                    box.classList.add(p1.marker);           
                     grid[x][y] = p1.marker;
                     player = p2;
                     playerWon(p1.marker);
+                    allFilled();
                 } else if (player == p2) {
                     box.innerText = p2.marker;
-                    box.classList.add(p2.marker);
                     grid[x][y] = p2.marker;
                     player = p1;
                     playerWon(p2.marker);
+                    allFilled();
                 }
             }
         });
     });
 
     function playerWon(marker) {
-
-
         // Check rows first.
         for (let y = 0; y < 3; y++) { // Iterate through the rows.
             let win = true;
@@ -108,8 +106,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-
-
         // if (b1.classList.contains(marker) && b2.classList.contains(marker) && b3.classList.contains(marker)) {
         //     alert('winner');
         // } else if (b4.classList.contains(marker) == b5.classList.contains(marker) && b5.classList.contains(marker) == b6.classList.contains(marker)) {
@@ -119,5 +115,32 @@ document.addEventListener('DOMContentLoaded', function() {
         // } else {
         //     pass
     }
+
+    function isFalse(value) {
+        return value === false;
+    }
+
+    function allFilled() {
+        filled = []
+        boxes.forEach(function(box) {
+            filled.push(box.innerText === '')
+        })
+        if (filled.every(isFalse)) {
+            alert("it's a draw")
+        }
+    }
+
+    resetButton = document.getElementById('reset');
+    resetButton.addEventListener('click', () => {
+        boxes.forEach(function(box) {
+            box.innerText = '';
+        });
+        grid = [
+            ['', '', ''],
+            ['', '', ''],
+            ['', '', ''],
+        ];
+        player = p1;
+    });
 
 });
